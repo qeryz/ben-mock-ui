@@ -18,14 +18,16 @@ export function WhatsNew({ news }: WhatsNewProps) {
         <CardTitle>What's new</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="bg-gray-100 rounded-xl p-4">
+        <div className="bg-gray-100 rounded-xl p-4 pr-12">
           {news.map((item, index) => (
             <div key={index} className="space-y-2">
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-gray-500 font-semibold">
                 {formatDate(item.date)}
               </div>
-              <h4 className="font-medium text-sm">{item.title}</h4>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <h4 className="font-semibold text-sm text-slate-600">
+                {item.title}
+              </h4>
+              <p className="text-sm text-gray-500 leading-relaxed">
                 {item.description}
               </p>
             </div>
