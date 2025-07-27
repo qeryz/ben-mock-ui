@@ -1,16 +1,17 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import Image from "next/image";
 
 interface SidebarProps {
-  className?: string
+  className?: string;
 }
 
 export function Sidebar({ className }: SidebarProps) {
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(false);
 
   const navigation = [
     { name: "Home", href: "/", icon: "🏠", active: true },
@@ -18,7 +19,7 @@ export function Sidebar({ className }: SidebarProps) {
     { name: "Groups", href: "/groups", icon: "👨‍👩‍👧‍👦" },
     { name: "Carriers", href: "/carriers", icon: "📡" },
     { name: "Developer", href: "/developer", icon: "💻" },
-  ]
+  ];
 
   const savedItems = [
     { name: "Chance Thornkins", type: "user" },
@@ -28,28 +29,36 @@ export function Sidebar({ className }: SidebarProps) {
     { name: "Julep", type: "group" },
     { name: "Snapshot f0e12b", type: "snapshot" },
     { name: "Custom view", type: "view" },
-  ]
+  ];
 
   return (
-    <div className={cn("flex h-screen bg-gradient-to-b from-pink-200 via-purple-200 via-40% to-purple-100 to-50%", className)}>
-      <div className={cn(
-        "bg-white/10 backdrop-blur-sm border-r border-white/20 transition-all duration-300",
-        collapsed ? "w-16" : "w-80"
-      )}>
+    <div
+      className={cn(
+        "flex h-screen bg-gradient-to-b from-pink-200 via-purple-200 via-40% to-purple-100 to-50%",
+        className
+      )}
+    >
+      <div
+        className={cn(
+          "bg-white/10 backdrop-blur-sm border-r border-white/20 transition-all duration-300",
+          collapsed ? "w-16" : "w-80"
+        )}
+      >
         {/* Header */}
         <div className="p-4 border-b border-white/20">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">N</span>
-            </div>
-            {!collapsed && (
-              <div className="flex-1">
-                <Input
-                  placeholder="Search for members or groups"
-                  className="bg-white/20 border-white/30 text-gray-700 placeholder:text-gray-600"
-                />
-              </div>
-            )}
+            <button
+              onClick={() => setCollapsed(!collapsed)}
+              className="w-7 h-7 bg-transparent rounded-xl flex items-center justify-center cursor-pointer"
+            >
+              <Image
+                src="/noyo-logo.png"
+                alt="Logo"
+                width={32}
+                height={32}
+                className="rounded-lg"
+              />
+            </button>
           </div>
         </div>
 
@@ -109,5 +118,5 @@ export function Sidebar({ className }: SidebarProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
