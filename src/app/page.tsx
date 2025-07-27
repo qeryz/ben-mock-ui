@@ -16,25 +16,25 @@ export default function Home() {
       title: "Open discrepancies",
       count: 89,
       icon: "→",
-      color: "bg-orange-500",
+      color: "bg-yellow-100",
     },
     {
       title: "Groups in open enrollment",
       count: 166,
       icon: "→",
-      color: "bg-blue-500",
+      color: "bg-yellow-100",
     },
     {
       title: "Group connection requests",
       count: 24,
       icon: "→",
-      color: "bg-green-500",
+      color: "bg-yellow-100",
     },
     {
       title: "Bad carrier connections",
       count: 0,
       icon: "→",
-      color: "bg-gray-500",
+      color: "bg-green-100",
     },
     { title: "Search for anything", icon: "🔍" },
     { title: "Get support", icon: "❓" },
@@ -76,7 +76,7 @@ export default function Home() {
 
         <div className="flex-1 overflow-auto">
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 p-3">
             <StatsCard
               title="Members"
               value={stats?.members || 0}
