@@ -3,7 +3,13 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import {
+  BuildingOfficeIcon,
+  CodeBracketIcon,
+  CubeTransparentIcon,
+  HomeIcon,
+  UsersIcon,
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 interface SidebarProps {
@@ -14,11 +20,32 @@ export function Sidebar({ className }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
 
   const navigation = [
-    { name: "Home", href: "/", icon: "🏠", active: true },
-    { name: "Members", href: "/members", icon: "👥" },
-    { name: "Groups", href: "/groups", icon: "👨‍👩‍👧‍👦" },
-    { name: "Carriers", href: "/carriers", icon: "📡" },
-    { name: "Developer", href: "/developer", icon: "💻" },
+    {
+      name: "Home",
+      href: "/",
+      icon: <HomeIcon className="w-4 h-4" />,
+      active: true,
+    },
+    {
+      name: "Members",
+      href: "/members",
+      icon: <UsersIcon className="w-4 h-4" />,
+    },
+    {
+      name: "Groups",
+      href: "/groups",
+      icon: <BuildingOfficeIcon className="w-4 h-4" />,
+    },
+    {
+      name: "Carriers",
+      href: "/carriers",
+      icon: <CubeTransparentIcon className="w-4 h-4" />,
+    },
+    {
+      name: "Developer",
+      href: "/developer",
+      icon: <CodeBracketIcon className="w-4 h-4" />,
+    },
   ];
 
   const savedItems = [
@@ -70,7 +97,7 @@ export function Sidebar({ className }: SidebarProps) {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                  "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-colors",
                   item.active
                     ? "bg-white/20 text-gray-800"
                     : "text-gray-600 hover:bg-white/10 hover:text-gray-800"
