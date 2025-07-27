@@ -70,7 +70,7 @@ export default function Home() {
       <div className="flex-1 flex flex-col overflow-hidden bg-gray-50 p-6">
         <Input
           placeholder="Search for members or groups"
-          className="bg-white border-black text-gray-700 placeholder:text-gray-600 max-w-100"
+          className="bg-white border-black text-gray-700 placeholder:text-gray-400 max-w-100"
         />
         <Header title="Home" />
 
