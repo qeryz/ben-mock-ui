@@ -68,7 +68,7 @@ export function Sidebar({ className }: SidebarProps) {
       <div
         className={cn(
           "bg-white/10 backdrop-blur-sm border-r border-white/20 transition-all duration-300",
-          collapsed ? "w-16" : "w-80"
+          collapsed ? "w-16" : "w-auto"
         )}
       >
         {/* Header */}
@@ -100,10 +100,13 @@ export function Sidebar({ className }: SidebarProps) {
                   "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-colors",
                   item.active
                     ? "bg-white/20 text-gray-800"
-                    : "text-gray-600 hover:bg-white/10 hover:text-gray-800"
+                    : "text-gray-700 hover:bg-white/10 hover:text-gray-800",
+                  collapsed && "justify-center"
                 )}
               >
-                <span>{item.icon}</span>
+                <div className="flex items-center text-gray-800">
+                  {item.icon}
+                </div>
                 {!collapsed && <span>{item.name}</span>}
               </a>
             ))}
