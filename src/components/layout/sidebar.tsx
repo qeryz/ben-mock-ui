@@ -31,7 +31,7 @@ export function Sidebar({ className }: SidebarProps) {
   ]
 
   return (
-    <div className={cn("flex h-screen bg-gradient-to-b from-purple-200 to-pink-200", className)}>
+    <div className={cn("flex h-screen bg-gradient-to-b from-pink-200 via-purple-200 via-40% to-purple-100 to-50%", className)}>
       <div className={cn(
         "bg-white/10 backdrop-blur-sm border-r border-white/20 transition-all duration-300",
         collapsed ? "w-16" : "w-80"
