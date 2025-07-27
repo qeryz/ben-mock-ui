@@ -1,14 +1,11 @@
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-interface ShortcutItem {
-  title: string;
-  count?: number;
-  icon: string;
-  color?: string;
-}
+import type { Shortcut } from "@/data";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface ShortcutsProps {
-  shortcuts: ShortcutItem[];
+  shortcuts: Shortcut[];
 }
 
 export function Shortcuts({ shortcuts }: ShortcutsProps) {
@@ -17,29 +14,51 @@ export function Shortcuts({ shortcuts }: ShortcutsProps) {
       <CardHeader>
         <CardTitle>Shortcuts</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-3">
-        {shortcuts.map((shortcut, index) => (
-          <div
-            key={index}
-            className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-          >
-            <div className="flex items-center gap-3">
-              <div
-                className={`w-8 h-6 rounded-2xl ${
-                  shortcut.color || "bg-gray-200"
-                } flex items-center justify-center text-sm`}
-              >
-                {shortcut.count && (
-                  <span className="text-xs font-semibold text-gray-800">
-                    {shortcut.count}
-                  </span>
-                )}
+      <CardContent>
+        {shortcuts.map((shortcut, index) => {
+          const IconComponent = shortcut.icon;
+          const isLast = index === shortcuts.length - 1;
+
+          return (
+            <Button
+              key={index}
+              variant="ghost"
+              className={cn(
+                "w-full justify-between h-auto p-3 hover:bg-gray-50",
+                !isLast && "border-b-2 border-slate-100"
+              )}
+            >
+              <div className="flex items-center justify-between w-full cursor-pointer">
+                <div className="flex items-center gap-3">
+                  <div
+                    className={cn(
+                      "w-8 h-6 rounded-xl flex items-center justify-center",
+                      shortcut.color || "bg-transparent"
+                    )}
+                  >
+                    {shortcut.count !== undefined ? (
+                      <span
+                        className={cn(
+                          "text-xs px-2 py-1 text-slate-600 font-semibold"
+                        )}
+                      >
+                        {shortcut.count}
+                      </span>
+                    ) : (
+                      <IconComponent className="w-4 h-4 text-gray-700" />
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium">
+                      {shortcut.title}
+                    </span>
+                  </div>
+                </div>
+                <ChevronRightIcon className="w-4 h-4 text-gray-400" />
               </div>
-              <span className="text-sm font-medium">{shortcut.title}</span>
-            </div>
-            <div className="text-gray-400">{shortcut.icon}</div>
-          </div>
-        ))}
+            </Button>
+          );
+        })}
       </CardContent>
     </div>
   );

@@ -11,11 +11,7 @@ interface StatsCardProps {
 export function StatsCard({ title, value, unit, icons }: StatsCardProps) {
   return (
     <Card className="hover:shadow-xl transition-shadow duration-300 ease-in-out">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium text-gray-600">
-          {title}
-        </CardTitle>
-      </CardHeader>
+      <CardHeader className="pb-2"></CardHeader>
       <CardContent>
         <div className="flex items-center justify-between">
           <div>
