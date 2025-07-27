@@ -7,48 +7,10 @@ import { StatsCard } from "@/components/features/stats-card";
 import { Shortcuts } from "@/components/features/shortcuts";
 import { WhatsNew } from "@/components/features/whats-new";
 import { useStats } from "@/hooks/use-stats";
+import { shortcuts, news } from "@/data";
 
 export default function Home() {
   const { stats, loading } = useStats();
-
-  const shortcuts = [
-    {
-      title: "Open discrepancies",
-      count: 89,
-      icon: "→",
-      color: "bg-yellow-100",
-    },
-    {
-      title: "Groups in open enrollment",
-      count: 166,
-      icon: "→",
-      color: "bg-yellow-100",
-    },
-    {
-      title: "Group connection requests",
-      count: 24,
-      icon: "→",
-      color: "bg-yellow-100",
-    },
-    {
-      title: "Bad carrier connections",
-      count: 0,
-      icon: "→",
-      color: "bg-green-100",
-    },
-    { title: "Search for anything", icon: "🔍" },
-    { title: "Get support", icon: "❓" },
-    { title: "Give feedback", icon: "💬" },
-  ];
-
-  const news = [
-    {
-      title: "The Carrier Page",
-      description:
-        "Check out available carriers on the Noyo network, who's coming soon. Get the specs for your build - carrier IDs, config notes, etc.",
-      date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
-    },
-  ];
 
   if (loading) {
     return (
