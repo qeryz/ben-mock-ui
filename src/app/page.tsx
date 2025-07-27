@@ -1,32 +1,54 @@
-"use client"
+"use client";
 
-import { Sidebar } from "@/components/layout/sidebar"
-import { Header } from "@/components/layout/header"
-import { StatsCard } from "@/components/features/stats-card"
-import { Shortcuts } from "@/components/features/shortcuts"
-import { WhatsNew } from "@/components/features/whats-new"
-import { useStats } from "@/hooks/use-stats"
+import { Sidebar } from "@/components/layout/sidebar";
+import { Header } from "@/components/layout/header";
+import { Input } from "@/components/ui/input";
+import { StatsCard } from "@/components/features/stats-card";
+import { Shortcuts } from "@/components/features/shortcuts";
+import { WhatsNew } from "@/components/features/whats-new";
+import { useStats } from "@/hooks/use-stats";
 
 export default function Home() {
-  const { stats, loading } = useStats()
+  const { stats, loading } = useStats();
 
   const shortcuts = [
-    { title: "Open discrepancies", count: 89, icon: "→", color: "bg-orange-500" },
-    { title: "Groups in open enrollment", count: 166, icon: "→", color: "bg-blue-500" },
-    { title: "Group connection requests", count: 24, icon: "→", color: "bg-green-500" },
-    { title: "Bad carrier connections", count: 0, icon: "→", color: "bg-gray-500" },
+    {
+      title: "Open discrepancies",
+      count: 89,
+      icon: "→",
+      color: "bg-orange-500",
+    },
+    {
+      title: "Groups in open enrollment",
+      count: 166,
+      icon: "→",
+      color: "bg-blue-500",
+    },
+    {
+      title: "Group connection requests",
+      count: 24,
+      icon: "→",
+      color: "bg-green-500",
+    },
+    {
+      title: "Bad carrier connections",
+      count: 0,
+      icon: "→",
+      color: "bg-gray-500",
+    },
     { title: "Search for anything", icon: "🔍" },
     { title: "Get support", icon: "❓" },
     { title: "Give feedback", icon: "💬" },
-  ]
+  ];
 
   const news = [
     {
       title: "The Carrier Page",
-      description: "Check out available carriers on the Noyo network, who's coming soon. Get the specs for your build - carrier IDs, config notes, etc.",
+      description:
+        "Check out available carriers on the Noyo network, who's coming soon. Get the specs for your build - carrier IDs, config notes, etc.",
       date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
     },
-  ]
+  ];
 
   if (loading) {
     return (
@@ -39,16 +61,20 @@ export default function Home() {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-500">
       <Sidebar />
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden bg-gray-50 p-6">
+        <Input
+          placeholder="Search for members or groups"
+          className="bg-white border-black text-gray-700 placeholder:text-gray-600 max-w-100"
+        />
         <Header title="Home" />
-        
-        <div className="flex-1 overflow-auto p-6">
+
+        <div className="flex-1 overflow-auto">
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <StatsCard
@@ -77,5 +103,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }
