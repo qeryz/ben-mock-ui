@@ -1,36 +1,38 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatNumber } from "@/lib/utils";
+import Image from "next/image";
+import type { IconConfig } from "@/data/stats";
 
 interface StatsCardProps {
   title: string;
   value: number;
   unit: string;
-  icons?: string[];
+  icons?: IconConfig[];
 }
 
 export function StatsCard({ title, value, unit, icons }: StatsCardProps) {
   return (
     <Card className="hover:shadow-xl transition-shadow duration-300 ease-in-out">
-      <CardHeader className="pb-2"></CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="text-2xl font-bold">{formatNumber(value)}</div>
-            <p className="text-xs text-gray-600">{unit}</p>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">{title}</CardTitle>
+        {icons && (
+          <div className="flex space-x-1">
+            {icons.map((icon, index) => (
+              <Image
+                key={index}
+                src={icon.src}
+                alt={icon.alt}
+                width={icon.size || 20}
+                height={icon.size || 20}
+                className="rounded-sm"
+              />
+            ))}
           </div>
-          {icons && (
-            <div className="flex gap-1">
-              {icons.map((icon, index) => (
-                <div
-                  key={index}
-                  className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm"
-                >
-                  {icon}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        )}
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{formatNumber(value)}</div>
+        <p className="text-xs text-muted-foreground">{unit}</p>
       </CardContent>
     </Card>
   );
