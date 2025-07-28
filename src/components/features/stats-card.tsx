@@ -13,26 +13,28 @@ interface StatsCardProps {
 export function StatsCard({ title, value, unit, icons }: StatsCardProps) {
   return (
     <Card className="hover:shadow-xl transition-shadow duration-300 ease-in-out">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        {icons && (
-          <div className="flex space-x-1">
-            {icons.map((icon, index) => (
-              <Image
-                key={index}
-                src={icon.src}
-                alt={icon.alt}
-                width={icon.size || 20}
-                height={icon.size || 20}
-                className="rounded-sm"
-              />
-            ))}
-          </div>
-        )}
-      </CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2"></CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">{formatNumber(value)}</div>
-        <p className="text-xs text-muted-foreground">{unit}</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-2xl font-bold">{formatNumber(value)}</div>
+            <p className="text-xs text-muted-foreground">{unit}</p>
+          </div>
+          {icons && (
+            <div className="flex flex-wrap gap-1 max-w-[120px] justify-end">
+              {icons.map((icon, index) => (
+                <Image
+                  key={index}
+                  src={icon.src}
+                  alt={icon.alt}
+                  width={icon.size || 20}
+                  height={icon.size || 20}
+                  className="rounded-sm"
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </CardContent>
     </Card>
   );
