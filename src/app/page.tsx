@@ -15,9 +15,9 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="flex h-screen">
+      <div className="flex h-screen bg-gradient-to-b from-pink-200 via-purple-200 via-40% to-purple-100 to-50%">
         <Sidebar />
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex flex-col items-center justify-center overflow-hidden bg-gray-50 p-6 rounded-2xl">
           <div className="text-center">
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-l-2 border-gray-900 mx-auto mb-4"></div>
             <p>Loading...</p>
@@ -28,9 +28,9 @@ export default function Home() {
   }
 
   return (
-    <div className="flex h-screen bg-gray-500">
+    <div className="flex h-screen bg-gradient-to-b from-pink-200 via-purple-200 via-40% to-purple-100 to-50%">
       <Sidebar />
-      <div className="flex-1 flex flex-col overflow-hidden bg-gray-50 p-6">
+      <div className="flex-1 flex flex-col overflow-hidden bg-gray-50 p-6 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <Input
             placeholder="Search for members or groups"
