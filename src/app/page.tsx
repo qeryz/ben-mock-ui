@@ -7,7 +7,7 @@ import { StatsCard } from "@/components/features/stats-card";
 import { Shortcuts } from "@/components/features/shortcuts";
 import { WhatsNew } from "@/components/features/whats-new";
 import { useStats } from "@/hooks/use-stats";
-import { shortcuts, news } from "@/data";
+import { shortcuts, news, statsConfig } from "@/data";
 import { UserControls } from "@/components/layout/user-controls";
 
 export default function Home() {
@@ -45,22 +45,15 @@ export default function Home() {
         <div className="flex-1 overflow-auto">
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 p-3">
-            <StatsCard
-              title="Members"
-              value={stats?.members || 0}
-              unit="Members"
-            />
-            <StatsCard
-              title="Groups"
-              value={stats?.groups || 0}
-              unit="Groups"
-            />
-            <StatsCard
-              title="Carriers"
-              value={stats?.carriers || 0}
-              unit="Carriers"
-              icons={["🏥", "🏢", "📱", "🌐"]}
-            />
+            {statsConfig.map((config) => (
+              <StatsCard
+                key={config.key}
+                title={config.title}
+                value={stats?.[config.key] || 0}
+                unit={config.unit}
+                icons={config.icons}
+              />
+            ))}
           </div>
 
           {/* Content Grid */}
