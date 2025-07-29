@@ -119,13 +119,15 @@ export function Sidebar({ className }: SidebarProps) {
                 {savedItems.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-3 px-3 py-2 text-sm text-gray-600 hover:bg-white/10 rounded-lg cursor-pointer"
+                    className="flex items-center gap-3 px-3 py-2 text-sm text-gray-500 hover:bg-white/10 rounded-lg cursor-pointer"
                   >
-                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">
-                      {item.type === "user" && "👤"}
-                      {item.type === "group" && "📁"}
-                      {item.type === "snapshot" && "📷"}
-                      {item.type === "view" && "👁️"}
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center">
+                      {item.type === "user" && (
+                        <UsersIcon className="w-4 h-4 text-gray-500" />
+                      )}
+                      {item.type === "group" && (
+                        <BuildingOfficeIcon className="w-4 h-4 text-gray-500" />
+                      )}
                     </div>
                     <span>{item.name}</span>
                   </div>
