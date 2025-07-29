@@ -67,8 +67,8 @@ export function Sidebar({ className }: SidebarProps) {
     >
       <div
         className={cn(
-          "bg-white/10 backdrop-blur-sm border-r border-white/20 transition-all duration-300",
-          collapsed ? "w-16" : "w-auto"
+          "bg-white/10 backdrop-blur-sm border-r border-white/20 transition-all duration-300 ease-in-out overflow-hidden",
+          collapsed ? "w-16" : "w-64"
         )}
       >
         {/* Header */}
@@ -97,7 +97,7 @@ export function Sidebar({ className }: SidebarProps) {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-colors",
+                  "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ease-in-out",
                   item.active
                     ? "bg-white/20 text-gray-800"
                     : "text-gray-700 hover:bg-white/10 hover:text-gray-800",
@@ -107,19 +107,25 @@ export function Sidebar({ className }: SidebarProps) {
                 <div className="flex items-center text-gray-800">
                   {item.icon}
                 </div>
-                {!collapsed && <span>{item.name}</span>}
+                {!collapsed && (
+                  <span className="transition-opacity duration-200 ease-in-out">
+                    {item.name}
+                  </span>
+                )}
               </a>
             ))}
           </nav>
 
           {!collapsed && (
-            <div className="mt-8">
-              <h3 className="text-sm font-medium text-gray-500 mb-4">Saved</h3>
+            <div className="mt-8 transition-all duration-200 ease-in-out">
+              <h3 className="text-sm font-medium text-gray-500 mb-4 transition-opacity duration-200 ease-in-out">
+                Saved
+              </h3>
               <div className="space-y-1">
                 {savedItems.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-3 px-3 py-2 text-sm text-gray-500 hover:bg-white/10 rounded-lg cursor-pointer"
+                    className="flex items-center gap-3 px-3 py-2 text-sm text-gray-500 hover:bg-white/10 rounded-lg cursor-pointer transition-all duration-200 ease-in-out"
                   >
                     <div className="w-6 h-6 rounded-full flex items-center justify-center">
                       {item.type === "user" && (
@@ -129,7 +135,9 @@ export function Sidebar({ className }: SidebarProps) {
                         <BuildingOfficeIcon className="w-4 h-4 text-gray-500" />
                       )}
                     </div>
-                    <span>{item.name}</span>
+                    <span className="transition-opacity duration-200 ease-in-out">
+                      {item.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -143,9 +151,11 @@ export function Sidebar({ className }: SidebarProps) {
             variant="ghost"
             size="icon"
             onClick={() => setCollapsed(!collapsed)}
-            className="text-gray-600 hover:text-gray-800"
+            className="text-gray-600 hover:text-gray-800 transition-all duration-200 ease-in-out"
           >
-            {collapsed ? "→" : "←"}
+            <span className="transition-transform duration-200 ease-in-out">
+              {collapsed ? "→" : "←"}
+            </span>
           </Button>
         </div>
       </div>
