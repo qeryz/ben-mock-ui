@@ -2,7 +2,7 @@
 
 import { Sidebar } from "./sidebar";
 import { Header } from "./header";
-import { SearchInput } from "@/components/ui/search-input";
+import { SearchInput } from "@/components";
 import { UserControls } from "./user-controls";
 import { usePathname } from "next/navigation";
 
