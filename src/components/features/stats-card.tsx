@@ -17,7 +17,7 @@ export function StatsCard({ title, value, unit, icons }: StatsCardProps) {
 
   return (
     <Card
-      className="hover:shadow-xl transition-shadow duration-300 ease-in-out"
+      className="hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer"
       onClick={() => handleClick(title)}
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2"></CardHeader>
