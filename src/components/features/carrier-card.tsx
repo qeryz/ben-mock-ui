@@ -12,8 +12,6 @@ interface CarrierCardProps {
 }
 
 export function CarrierCard({ carrier }: CarrierCardProps) {
-  const isLive = carrier.connectionStatus === "connected";
-
   const statusColor =
     carrier.status === "active"
       ? "bg-green-100 text-green-800"

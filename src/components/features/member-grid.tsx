@@ -5,7 +5,7 @@ import { MemberCard } from "./member-card";
 import { useState } from "react";
 
 export function MemberGrid() {
-  const { users, loading } = useUserStore();
+  const { users } = useUserStore();
   const [sortBy, setSortBy] = useState<"name" | "email" | "recent">("name");
 
   const sortedUsers = [...users].sort((a, b) => {
@@ -29,7 +29,9 @@ export function MemberGrid() {
           <span className="text-sm text-gray-600">Sort by:</span>
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as any)}
+            onChange={(e) =>
+              setSortBy(e.target.value as "name" | "email" | "recent")
+            }
             className="text-sm border border-gray-300 rounded px-2 py-1"
           >
             <option value="name">Name</option>

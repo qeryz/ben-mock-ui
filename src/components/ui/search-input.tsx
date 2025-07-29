@@ -3,11 +3,12 @@ import { cn } from "@/lib/utils";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useUserStore } from "@/stores/user-store";
 import { useEffect, useState, useRef, useCallback } from "react";
+import type { User } from "@/stores/user-store";
 
 export interface SearchInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   showSearchIcon?: boolean;
-  onUserSelect?: (user: any) => void;
+  onUserSelect?: (user: User) => void;
   debounceMs?: number;
 }
 
@@ -32,7 +33,6 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
 
     const {
       filteredUsers,
-      searchQuery,
       loading,
       error,
       fetchUsers,
@@ -86,7 +86,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
     };
 
     // Handle user selection
-    const handleUserSelect = (user: any) => {
+    const handleUserSelect = (user: User) => {
       setInputValue(user.name);
       setIsOpen(false);
       onUserSelect?.(user);
@@ -190,7 +190,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
               filteredUsers.length === 0 &&
               inputValue && (
                 <div className="p-3 text-center text-gray-500 text-sm">
-                  No users found for "{inputValue}"
+                  No users found for &quot;{inputValue}&quot;
                 </div>
               )}
 

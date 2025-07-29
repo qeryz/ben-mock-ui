@@ -5,7 +5,7 @@ import { CarrierCard } from "./carrier-card";
 import { useState } from "react";
 
 export function CarrierGrid() {
-  const { carriers, loading } = useCarrierStore();
+  const { carriers } = useCarrierStore();
   const [filter, setFilter] = useState<"all" | "live" | "available">("all");
 
   // Mock additional carriers to match the image

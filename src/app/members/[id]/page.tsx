@@ -30,7 +30,7 @@ export default function MemberDetailPage() {
           Member Not Found
         </h2>
         <p className="text-gray-600">
-          The member you're looking for doesn't exist.
+          The member you&apos;re looking for doesn&apos;t exist.
         </p>
       </div>
     );

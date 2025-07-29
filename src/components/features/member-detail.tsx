@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   BuildingOfficeIcon,
   EyeIcon,
@@ -62,7 +61,7 @@ const mockCoverageData = [
 ];
 
 export function MemberDetail({ member }: MemberDetailProps) {
-  const { users, fetchUsers } = useUserStore();
+  const { users } = useUserStore();
   const { carriers, fetchCarriers, getCarrierById } = useCarrierStore();
 
   useEffect(() => {

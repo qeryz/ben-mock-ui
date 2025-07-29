@@ -5,7 +5,7 @@ import { GroupCard } from "./group-card";
 import { useState } from "react";
 
 export function GroupGrid() {
-  const { groups, loading } = useGroupStore();
+  const { groups } = useGroupStore();
   const [filter, setFilter] = useState<
     "all" | "active" | "pending" | "open_enrollment"
   >("all");

@@ -15,7 +15,7 @@ export function WhatsNew({ news }: WhatsNewProps) {
   return (
     <div>
       <CardHeader>
-        <CardTitle>What's new</CardTitle>
+        <CardTitle>What&apos;s new</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="bg-gray-100 rounded-xl p-4 pr-12">

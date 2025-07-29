@@ -13,7 +13,7 @@ interface AppLayoutProps {
 export function AppLayout({ children }: AppLayoutProps) {
   const pathname = usePathname();
 
-  const handleUserSelect = (user: any) => {
+  const handleUserSelect = (user: { id: number; name: string }) => {
     // Handle user selection, e.g., navigate to user profile
     window.location.href = `/members/${user.id}`;
   };

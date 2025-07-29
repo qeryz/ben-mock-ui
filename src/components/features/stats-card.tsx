@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { formatNumber } from "@/lib/utils";
 import Image from "next/image";
 import type { IconConfig } from "@/data/stats";
