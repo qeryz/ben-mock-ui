@@ -11,8 +11,15 @@ interface StatsCardProps {
 }
 
 export function StatsCard({ title, value, unit, icons }: StatsCardProps) {
+  const handleClick = (title: string) => {
+    window.location.href = `/${title.toLowerCase()}`;
+  };
+
   return (
-    <Card className="hover:shadow-xl transition-shadow duration-300 ease-in-out">
+    <Card
+      className="hover:shadow-xl transition-shadow duration-300 ease-in-out"
+      onClick={() => handleClick(title)}
+    >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2"></CardHeader>
       <CardContent>
         <div className="flex items-center justify-between">
