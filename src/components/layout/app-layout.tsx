@@ -20,6 +20,16 @@ export function AppLayout({ children }: AppLayoutProps) {
 
   // Get page title based on pathname
   const getPageTitle = () => {
+    if (pathname.startsWith("/members/") && pathname !== "/members") {
+      return "Member Details";
+    }
+    if (pathname.startsWith("/groups/") && pathname !== "/groups") {
+      return "Group Details";
+    }
+    if (pathname.startsWith("/carriers/") && pathname !== "/carriers") {
+      return "Carrier Details";
+    }
+
     switch (pathname) {
       case "/":
         return "Home";
