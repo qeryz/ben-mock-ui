@@ -27,6 +27,10 @@ export function Shortcuts({ shortcuts }: ShortcutsProps) {
                 "w-full justify-between h-auto p-3 hover:bg-gray-50",
                 !isLast && "border-b-2 border-slate-100"
               )}
+              aria-label={`${shortcut.title}${
+                shortcut.count !== undefined ? ` (${shortcut.count})` : ""
+              }`}
+              title={shortcut.title}
             >
               <div className="flex items-center justify-between w-full cursor-pointer">
                 <div className="flex items-center gap-3">
@@ -45,7 +49,10 @@ export function Shortcuts({ shortcuts }: ShortcutsProps) {
                         {shortcut.count}
                       </span>
                     ) : (
-                      <IconComponent className="w-4 h-4 text-gray-700" />
+                      <IconComponent
+                        className="w-4 h-4 text-gray-700"
+                        aria-hidden="true"
+                      />
                     )}
                   </div>
                   <div className="flex items-center gap-2">
@@ -54,7 +61,10 @@ export function Shortcuts({ shortcuts }: ShortcutsProps) {
                     </span>
                   </div>
                 </div>
-                <ChevronRightIcon className="w-4 h-4 text-gray-400" />
+                <ChevronRightIcon
+                  className="w-4 h-4 text-gray-400"
+                  aria-hidden="true"
+                />
               </div>
             </Button>
           );

@@ -157,6 +157,12 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
               "[&::-webkit-search-cancel-button]:appearance-none",
               className
             )}
+            aria-label="Search for users"
+            aria-describedby={isOpen ? "search-results" : undefined}
+            aria-expanded={isOpen}
+            aria-autocomplete="list"
+            role="combobox"
+            aria-controls={isOpen ? "search-results" : undefined}
             {...props}
           />
 
@@ -164,6 +170,8 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
             <button
               onClick={handleClear}
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              aria-label="Clear search"
+              title="Clear search"
             >
               <XMarkIcon className="w-4 h-4" />
             </button>
@@ -172,7 +180,12 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
 
         {/* Dropdown */}
         {isOpen && (
-          <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
+          <div
+            className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto"
+            id="search-results"
+            role="listbox"
+            aria-label="Search results"
+          >
             {(loading || isSearching) && (
               <div className="p-3 text-center text-gray-500 flex items-center justify-center gap-2">
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900" />
@@ -195,12 +208,21 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
               )}
 
             {!loading && !isSearching && !error && filteredUsers.length > 0 && (
-              <ul className="py-1">
+              <ul className="py-1" role="listbox">
                 {filteredUsers.slice(0, 8).map((user) => (
                   <li
                     key={user.id}
                     onClick={() => handleUserSelect(user)}
                     className="px-3 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
+                    role="option"
+                    aria-selected="false"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleUserSelect(user);
+                      }
+                    }}
                   >
                     <div className="flex items-center justify-between">
                       <div>

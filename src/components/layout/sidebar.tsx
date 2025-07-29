@@ -77,10 +77,12 @@ export function Sidebar({ className }: SidebarProps) {
             <button
               onClick={() => setCollapsed(!collapsed)}
               className="w-7 h-7 bg-transparent rounded-xl flex items-center justify-center cursor-pointer"
+              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+              title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             >
               <Image
                 src="/noyo-logo.png"
-                alt="Logo"
+                alt="Company logo"
                 width={32}
                 height={32}
                 className="rounded-lg"
@@ -91,7 +93,7 @@ export function Sidebar({ className }: SidebarProps) {
 
         {/* Navigation */}
         <div className="p-4">
-          <nav className="space-y-2">
+          <nav className="space-y-2" aria-label="Main navigation">
             {navigation.map((item) => (
               <a
                 key={item.name}
@@ -103,8 +105,14 @@ export function Sidebar({ className }: SidebarProps) {
                     : "text-gray-700 hover:bg-white/10 hover:text-gray-800",
                   collapsed && "justify-center"
                 )}
+                aria-label={`Navigate to ${item.name}`}
+                title={item.name}
+                aria-current={item.active ? "page" : undefined}
               >
-                <div className="flex items-center text-gray-800">
+                <div
+                  className="flex items-center text-gray-800"
+                  aria-hidden="true"
+                >
                   {item.icon}
                 </div>
                 {!collapsed && (
@@ -121,13 +129,18 @@ export function Sidebar({ className }: SidebarProps) {
               <h3 className="text-sm font-medium text-gray-500 mb-4 transition-opacity duration-200 ease-in-out">
                 Saved
               </h3>
-              <div className="space-y-1">
+              <div className="space-y-1" role="list" aria-label="Saved items">
                 {savedItems.map((item, index) => (
-                  <div
+                  <button
                     key={index}
-                    className="flex items-center gap-3 px-3 py-2 text-sm text-gray-500 hover:bg-white/10 rounded-lg cursor-pointer transition-all duration-200 ease-in-out"
+                    className="flex items-center gap-3 px-3 py-2 text-sm text-gray-500 hover:bg-white/10 rounded-lg cursor-pointer transition-all duration-200 ease-in-out w-full text-left"
+                    aria-label={`Open saved item: ${item.name}`}
+                    title={`${item.name} (${item.type})`}
                   >
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center">
+                    <div
+                      className="w-6 h-6 rounded-full flex items-center justify-center"
+                      aria-hidden="true"
+                    >
                       {item.type === "user" && (
                         <UsersIcon className="w-4 h-4 text-gray-500" />
                       )}
@@ -138,7 +151,7 @@ export function Sidebar({ className }: SidebarProps) {
                     <span className="transition-opacity duration-200 ease-in-out">
                       {item.name}
                     </span>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -152,8 +165,13 @@ export function Sidebar({ className }: SidebarProps) {
             size="icon"
             onClick={() => setCollapsed(!collapsed)}
             className="text-gray-600 hover:text-gray-800 transition-all duration-200 ease-in-out"
+            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
-            <span className="transition-transform duration-200 ease-in-out">
+            <span
+              className="transition-transform duration-200 ease-in-out"
+              aria-hidden="true"
+            >
               {collapsed ? "→" : "←"}
             </span>
           </Button>

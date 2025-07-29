@@ -101,7 +101,11 @@ export function CarrierGrid() {
   return (
     <div className="space-y-6">
       {/* Filter Buttons */}
-      <div className="flex gap-4 mb-6">
+      <div
+        className="flex gap-4 mb-6"
+        role="tablist"
+        aria-label="Filter carriers"
+      >
         <button
           onClick={() => setFilter("all")}
           className={`px-4 py-2 rounded-lg font-medium ${
@@ -109,6 +113,10 @@ export function CarrierGrid() {
               ? "bg-blue-100 text-blue-800"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
+          role="tab"
+          aria-selected={filter === "all"}
+          aria-controls="carriers-content"
+          aria-label="Show all carriers"
         >
           All Carriers
         </button>
@@ -119,6 +127,10 @@ export function CarrierGrid() {
               ? "bg-blue-100 text-blue-800"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
+          role="tab"
+          aria-selected={filter === "live"}
+          aria-controls="carriers-content"
+          aria-label={`Show live carriers (${liveCarriers.length} carriers)`}
         >
           Live ({liveCarriers.length})
         </button>
@@ -129,41 +141,49 @@ export function CarrierGrid() {
               ? "bg-blue-100 text-blue-800"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
+          role="tab"
+          aria-selected={filter === "available"}
+          aria-controls="carriers-content"
+          aria-label={`Show available carriers (${availableCarriers.length} carriers)`}
         >
           Available ({availableCarriers.length})
         </button>
       </div>
 
       {/* Live Section */}
-      {(filter === "all" || filter === "live") && liveCarriers.length > 0 && (
-        <div>
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Live</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {liveCarriers.map((carrier) => (
-              <CarrierCard key={carrier.id} carrier={carrier} />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Available Section */}
-      {(filter === "all" || filter === "available") &&
-        availableCarriers.length > 0 && (
+      <div id="carriers-content" role="tabpanel" aria-label="Filtered carriers">
+        {(filter === "all" || filter === "live") && liveCarriers.length > 0 && (
           <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
-              Available
-            </h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Live</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {availableCarriers.map((carrier) => (
+              {liveCarriers.map((carrier) => (
                 <CarrierCard key={carrier.id} carrier={carrier} />
               ))}
             </div>
           </div>
         )}
 
-      {filteredCarriers.length === 0 && (
-        <div className="text-center py-8 text-gray-500">No carriers found.</div>
-      )}
+        {/* Available Section */}
+        {(filter === "all" || filter === "available") &&
+          availableCarriers.length > 0 && (
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                Available
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {availableCarriers.map((carrier) => (
+                  <CarrierCard key={carrier.id} carrier={carrier} />
+                ))}
+              </div>
+            </div>
+          )}
+
+        {filteredCarriers.length === 0 && (
+          <div className="text-center py-8 text-gray-500">
+            No carriers found.
+          </div>
+        )}
+      </div>
     </div>
   );
 }

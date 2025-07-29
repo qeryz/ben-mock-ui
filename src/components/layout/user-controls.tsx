@@ -7,22 +7,43 @@ import {
 
 export function UserControls({ actions }: { actions?: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-1">
-      <Button variant="ghost" size="icon">
+    <div
+      className="flex items-center gap-1"
+      role="toolbar"
+      aria-label="User controls"
+    >
+      <Button
+        variant="ghost"
+        size="icon"
+        aria-label="Bookmark this page"
+        title="Bookmark"
+      >
         <BookmarkIcon className="w-4 h-4 text-gray-600" />
       </Button>
-      <Button variant="ghost" size="icon">
+      <Button
+        variant="ghost"
+        size="icon"
+        aria-label="Copy link to this page"
+        title="Copy link"
+      >
         <LinkIcon className="w-4 h-4 text-gray-600" />
       </Button>
-      <Button variant="ghost" size="icon">
+      <Button
+        variant="ghost"
+        size="icon"
+        aria-label="Hide sensitive information"
+        title="Hide sensitive info"
+      >
         <EyeSlashIcon className="w-4 h-4 text-gray-600" />
       </Button>
       <Button
         variant="ghost"
         size="icon"
         className="ml-4 bg-gray-200 hover:bg-gray-300 rounded-full"
+        aria-label="User account menu"
+        title="Account menu"
       >
-        AA
+        <span aria-hidden="true">AA</span>
       </Button>
       {actions}
     </div>

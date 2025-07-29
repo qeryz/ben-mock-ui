@@ -26,13 +26,17 @@ export function MemberGrid() {
       {/* Sort Controls */}
       <div className="flex gap-4 mb-6">
         <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-600">Sort by:</span>
+          <label htmlFor="member-sort" className="text-sm text-gray-600">
+            Sort by:
+          </label>
           <select
+            id="member-sort"
             value={sortBy}
             onChange={(e) =>
               setSortBy(e.target.value as "name" | "email" | "recent")
             }
             className="text-sm border border-gray-300 rounded px-2 py-1"
+            aria-label="Sort members by"
           >
             <option value="name">Name</option>
             <option value="email">Email</option>
@@ -45,7 +49,10 @@ export function MemberGrid() {
       </div>
 
       {/* Members Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        aria-label={`${sortedUsers.length} members displayed`}
+      >
         {sortedUsers.map((user) => (
           <MemberCard key={user.id} user={user} />
         ))}

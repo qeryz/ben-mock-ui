@@ -24,7 +24,11 @@ export function GroupGrid() {
   return (
     <div className="space-y-6">
       {/* Filter Buttons */}
-      <div className="flex gap-4 mb-6">
+      <div
+        className="flex gap-4 mb-6"
+        role="tablist"
+        aria-label="Filter groups"
+      >
         <button
           onClick={() => setFilter("all")}
           className={`px-4 py-2 rounded-lg font-medium ${
@@ -32,6 +36,10 @@ export function GroupGrid() {
               ? "bg-blue-100 text-blue-800"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
+          role="tab"
+          aria-selected={filter === "all"}
+          aria-controls="groups-content"
+          aria-label={`Show all groups (${groups.length} groups)`}
         >
           All Groups ({groups.length})
         </button>
@@ -42,6 +50,10 @@ export function GroupGrid() {
               ? "bg-blue-100 text-blue-800"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
+          role="tab"
+          aria-selected={filter === "active"}
+          aria-controls="groups-content"
+          aria-label={`Show active groups (${activeGroups.length} groups)`}
         >
           Active ({activeGroups.length})
         </button>
@@ -52,6 +64,10 @@ export function GroupGrid() {
               ? "bg-blue-100 text-blue-800"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
+          role="tab"
+          aria-selected={filter === "open_enrollment"}
+          aria-controls="groups-content"
+          aria-label={`Show open enrollment groups (${openEnrollmentGroups.length} groups)`}
         >
           Open Enrollment ({openEnrollmentGroups.length})
         </button>
@@ -62,13 +78,22 @@ export function GroupGrid() {
               ? "bg-blue-100 text-blue-800"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
+          role="tab"
+          aria-selected={filter === "pending"}
+          aria-controls="groups-content"
+          aria-label={`Show pending groups (${pendingGroups.length} groups)`}
         >
           Pending ({pendingGroups.length})
         </button>
       </div>
 
       {/* Groups Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div
+        id="groups-content"
+        role="tabpanel"
+        aria-label="Filtered groups"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      >
         {filteredGroups.map((group) => (
           <GroupCard key={group.id} group={group} />
         ))}

@@ -9,7 +9,11 @@ interface MemberCardProps {
 
 export function MemberCard({ user }: MemberCardProps) {
   return (
-    <Link href={`/members/${user.id}`}>
+    <Link
+      href={`/members/${user.id}`}
+      aria-label={`View details for ${user.name} (${user.email})`}
+      title={`View details for ${user.name}`}
+    >
       <Card className="hover:shadow-md transition-shadow duration-200 cursor-pointer h-full">
         <CardHeader className="pb-3">
           <div className="flex items-center gap-3">
