@@ -14,7 +14,8 @@ export function AppLayout({ children }: AppLayoutProps) {
   const pathname = usePathname();
 
   const handleUserSelect = (user: any) => {
-    console.log("Selected user:", user);
+    // Handle user selection, e.g., navigate to user profile
+    window.location.href = `/members/${user.id}`;
   };
 
   // Get page title based on pathname
