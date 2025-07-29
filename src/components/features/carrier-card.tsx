@@ -22,38 +22,26 @@ export function CarrierCard({ carrier }: CarrierCardProps) {
       : "bg-yellow-100 text-yellow-800";
 
   const syncColor =
-    carrier.syncStatus === "Sync" ? "text-green-600" : "text-gray-500";
+    carrier.syncStatus === "Send" ? "text-gray-500" : "text-green-600";
 
   return (
     <Card className="hover:shadow-md transition-shadow duration-200 cursor-pointer">
       <CardContent className="p-4">
-        {/* Header with groups count and status */}
+        {/* Header with badge status */}
         <div className="flex justify-between items-start mb-3">
-          <div>
-            <div className="text-sm font-medium text-gray-900">
-              {carrier.totalGroups} group{carrier.totalGroups !== 1 ? "s" : ""}
-            </div>
-            <div className="flex items-center gap-2 mt-1">
-              <div className={cn("flex items-center gap-1", syncColor)}>
-                <div className="w-2 h-2 rounded-full bg-current"></div>
-                <span className="text-xs">{carrier.syncStatus || "Sync"}</span>
-              </div>
-              <span className="text-xs text-gray-500">
-                {carrier.features.slice(0, 3).join(", ")}
-                {carrier.features.length > 3 &&
-                  `, +${carrier.features.length - 3}`}
-              </span>
-            </div>
-          </div>
-          {carrier.status !== "active" && (
+          {carrier.status && (
             <Badge variant="secondary" className={statusColor}>
-              {carrier.status === "inactive" ? "Inactive" : "Active"}
+              {carrier.status === "inactive"
+                ? "Inactive"
+                : carrier.status === "active"
+                ? "Active"
+                : "Pending"}
             </Badge>
           )}
         </div>
 
         {/* Logo and Name */}
-        <div className="flex flex-col items-center text-center mb-3">
+        <div className="flex flex-col items-start text-center mb-3">
           <div className="w-16 h-16 mb-3 rounded-lg bg-gray-100 flex items-center justify-center">
             <Image
               src={carrier.logo}
@@ -69,11 +57,11 @@ export function CarrierCard({ carrier }: CarrierCardProps) {
         </div>
 
         {/* Bottom info */}
-        <div className="text-center">
+        <div className="text-start">
           <div className="text-sm font-medium text-gray-900 mb-1">
             {carrier.totalGroups} group{carrier.totalGroups !== 1 ? "s" : ""}
           </div>
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-start gap-2">
             <div className={cn("flex items-center gap-1", syncColor)}>
               <div className="w-2 h-2 rounded-full bg-current"></div>
               <span className="text-xs">{carrier.syncStatus || "Sync"}</span>

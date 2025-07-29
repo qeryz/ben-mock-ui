@@ -14,7 +14,7 @@ export function CarrierGrid() {
       id: 5,
       name: "Unum",
       slug: "unum",
-      status: "active" as const,
+      status: "inactive" as const,
       logo: "/icons/carriers/unum-logo.png",
       description: "Leading disability insurance provider",
       website: "https://unum.com",
