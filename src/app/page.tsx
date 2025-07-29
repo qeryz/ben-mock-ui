@@ -2,17 +2,22 @@
 
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
-import { Input } from "@/components/ui/input";
+import { SearchInput } from "@/components/ui/search-input";
 import { StatsCard } from "@/components/features/stats-card";
 import { Shortcuts } from "@/components/features/shortcuts";
 import { WhatsNew } from "@/components/features/whats-new";
 import { useStats } from "@/hooks/use-stats";
 import { shortcuts, news, statsConfig } from "@/data";
 import { UserControls } from "@/components/layout/user-controls";
+import { User } from "@/types";
 
 export default function Home() {
   const { stats, loading } = useStats();
 
+  const handleUserSelect = (user: User) => {
+    console.log("Selected user:", user);
+    // Handle user selection (e.g., navigate to user page)
+  };
   if (loading) {
     return (
       <div className="flex h-screen bg-gradient-to-b from-pink-200 via-purple-200 via-40% to-purple-100 to-50%">
@@ -32,9 +37,10 @@ export default function Home() {
       <Sidebar />
       <div className="flex-1 flex flex-col overflow-hidden bg-gray-50 p-6 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
-          <Input
+          <SearchInput
             placeholder="Search for members or groups"
             className="bg-white border-black text-gray-700 placeholder:text-gray-400 min-w-70"
+            onUserSelect={handleUserSelect}
           />
           <UserControls />
         </div>
