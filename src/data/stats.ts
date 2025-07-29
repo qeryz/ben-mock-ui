@@ -35,7 +35,7 @@ export const statsConfig: StatConfig[] = [
         size: 24,
       },
       {
-        src: "/beam-logo.jpg",
+        src: "/icons/carriers/beam-logo.jpg",
         alt: "Beam Logo",
         size: 24,
       },
